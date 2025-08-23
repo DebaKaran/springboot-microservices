@@ -1,0 +1,24 @@
+services:
+  accounts:
+    build:
+      context: ./accounts
+      dockerfile: Dockerfile
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+
+  loans:
+    build:
+      context: ./loans
+      dockerfile: Dockerfile
+    container_name: loans-ms
+    ports:
+      - "8090:8090"
+
+  cards:
+    build:
+      context: ./cards
+      dockerfile: Dockerfile
+    container_name: cards-ms
+    ports:
+      - "9000:9000"

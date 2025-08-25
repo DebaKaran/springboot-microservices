@@ -1,0 +1,13 @@
+server:
+  port: 8071
+spring:
+  application:
+    name: configserver
+  profiles:
+    active: native # use classpath instead of Git
+  cloud:
+    config:
+      server:
+        native:
+          search-locations:
+            - classpath:/configs

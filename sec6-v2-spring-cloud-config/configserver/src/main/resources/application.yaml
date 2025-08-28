@@ -4,10 +4,16 @@ spring:
   application:
     name: configserver
   profiles:
-    active: native # use classpath instead of Git
+    active: git
   cloud:
     config:
       server:
-        native:
-          search-locations:
-            - classpath:/configs
+        git:
+          uri: "https://github.com/DebaKaran/easybank-config.git"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+encrypt:
+  key: "AQAD+f1j3Zk0y4k3P6u0gQAAAAAAAGD+f1j3Zk0y4k3P6u0gQ=="
+

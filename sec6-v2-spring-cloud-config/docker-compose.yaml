@@ -21,7 +21,7 @@ services:
     depends_on:
       - configserver
     environment:
-      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+      - CONFIG_SERVER_URL=http://configserver:8071
     networks:
       - easybank-net
 
@@ -35,7 +35,7 @@ services:
     depends_on:
       - configserver
     environment:
-      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+      - CONFIG_SERVER_URL=http://configserver:8071
     networks:
       - easybank-net
 
@@ -49,7 +49,7 @@ services:
     depends_on:
       - configserver
     environment:
-      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+      - CONFIG_SERVER_URL=http://configserver:8071
     networks:
       - easybank-net
 

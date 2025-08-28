@@ -1,4 +1,16 @@
+version: "3.9"
+
 services:
+  configserver:
+    build:
+      context: ./configserver
+      dockerfile: Dockerfile
+    container_name: configserver
+    ports:
+      - "8071:8071"
+    networks:
+      - easybank-net
+
   accounts:
     build:
       context: ./accounts
@@ -6,6 +18,12 @@ services:
     container_name: accounts-ms
     ports:
       - "8080:8080"
+    depends_on:
+      - configserver
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+    networks:
+      - easybank-net
 
   loans:
     build:
@@ -14,6 +32,12 @@ services:
     container_name: loans-ms
     ports:
       - "8090:8090"
+    depends_on:
+      - configserver
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+    networks:
+      - easybank-net
 
   cards:
     build:
@@ -22,3 +46,13 @@ services:
     container_name: cards-ms
     ports:
       - "9000:9000"
+    depends_on:
+      - configserver
+    environment:
+      - SPRING_CONFIG_IMPORT=optional:configserver:http://configserver:8071
+    networks:
+      - easybank-net
+
+networks:
+  easybank-net:
+    driver: bridge

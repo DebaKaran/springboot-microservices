@@ -20,8 +20,21 @@ spring:
     show-sql: true
   config:
     import: "optional:configserver:${CONFIG_SERVER_URL:http://localhost:8071}"
+    fail-fast: true # retry if configserver not ready
+    retry:
+      max-attempts: 6
+      initial-interval: 2000 # ms
+      multiplier: 1.5
+      max-interval: 10000 # ms
+  cloud:
+    bus:
+      enabled: true
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKER_URL:localhost:9092}
 management:
   endpoints:
     web:
       exposure:
-        include: refresh # or just "refresh" if you want to be strict
+        include: health,info,bus-refresh # or just "refresh" if you want to be strict

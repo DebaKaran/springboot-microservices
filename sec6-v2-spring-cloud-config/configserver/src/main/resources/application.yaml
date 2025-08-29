@@ -14,6 +14,25 @@ spring:
           timeout: 5
           clone-on-start: true
           force-pull: true
+      fail-fast: true         # Fail immediately if Config Server cannot start
+      retry:
+        max-attempts: 10
+        initial-interval: 2000   # in milliseconds
+        multiplier: 1.5
+    stream:
+      kafka:
+        binder:
+          brokers: ${KAFKA_BROKER_URL:localhost:9092}
+
 encrypt:
   key: "AQAD+f1j3Zk0y4k3P6u0gQAAAAAAAGD+f1j3Zk0y4k3P6u0gQ=="
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
 

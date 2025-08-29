@@ -66,6 +66,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
+        <!-- Add Kafka starter -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bus-kafka</artifactId>
+        </dependency>
     </dependencies>
     <dependencyManagement>
         <dependencies>
